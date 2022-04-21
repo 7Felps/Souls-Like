@@ -32,7 +32,7 @@ public class Bullet : MonoBehaviour
         {
             transform.position = PlayerController.Instance.gameObject.transform.position + new Vector3(0,-1,0);
             Direction = Vector2.down;
-        }   
+        }  
     }
 
     private void FixedUpdate() 

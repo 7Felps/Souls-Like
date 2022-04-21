@@ -624,6 +624,7 @@ MonoBehaviour:
   X: 0
   Y: 0
   Speed: 5
+  Rolled: 0
   RB: {fileID: 1250137890}
   Animator: {fileID: 1250137889}
   AudioSource: {fileID: 1250137888}
@@ -998,7 +999,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46ccef0d7e552784f995c4e132e50227, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  i: 0
   Speed: 5
 --- !u!1 &1553077104
 GameObject:

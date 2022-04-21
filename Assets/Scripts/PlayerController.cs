@@ -1,12 +1,13 @@
 using UnityEngine;
-using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
     public static PlayerController Instance; 
+
     public float X;
     public float Y;
     public float Speed = 5;
+    public bool Rolled;
     
     public Rigidbody2D RB;
     public Animator Animator;
@@ -47,28 +48,18 @@ public class PlayerController : MonoBehaviour
                 if (X < 0) {RB.AddForce(new Vector2(-Speed, 0), ForceMode2D.Impulse);}
                 Animator.SetBool("IsRolling", true);
                 AudioSource.PlayOneShot(AudioSource.clip);
-                Physics2D.IgnoreLayerCollision(7, 6, true);
-                StartCoroutine(Recover());
-            }
+            } 
+            if (Rolled == true) {Animator.SetBool("IsRolling", false);}
+            if (Animator.GetBool("IsRolling") == true) {Physics2D.IgnoreLayerCollision(7, 6, true);}
+            if (Animator.GetBool("IsRolling") == false) {Physics2D.IgnoreLayerCollision(7, 6, false);}
 
             //atirar
             if (Input.GetButtonDown("Fire1"))
             {
                 GameObject Bullet = ObjectPool.Instance.GetPooledObject();
-
-                if (Bullet != null)
-                {
-                    Bullet.SetActive(true);
-                }
+                if (Bullet != null) {Bullet.SetActive(true);}
             }
         }
-    }
-
-    private IEnumerator Recover()
-    {
-        yield return new WaitForSeconds(1); 
-        Animator.SetBool("IsRolling", false);
-        Physics2D.IgnoreLayerCollision(7, 6, false);
     }
 
     private void OnCollisionEnter2D(Collision2D Col) 
@@ -78,6 +69,7 @@ public class PlayerController : MonoBehaviour
             Health.Instance.TakeDamage(1);
             Animator.SetBool("IsTakingHit", true);
         }
+        
     }
 
     private void OnCollisionExit2D(Collision2D other) 
