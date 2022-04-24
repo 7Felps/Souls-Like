@@ -1,37 +1,55 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
+using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
     public static Health Instance; 
-    public GameObject[] Sprite;
-    private int HealthPoints;
-    private bool Dead = false;
+    
+    public Slider Slider;
+    public float HealthPoints = 3;
+
+    public bool Dead = false;
+    public Animator Transition;
     
     private void Awake() 
     {
         if (Instance == null) {Instance = this;}
     }
 
-    // Start is called before the first frame update   
-    void Start() 
+    private void Start() 
     {
-        HealthPoints = Sprite.Length;
+        Slider.maxValue = HealthPoints;
     }
 
-    // Update is called once per frame
     void Update()
     {
+        Slider.value = HealthPoints;
+
         if (Dead == true)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            StartCoroutine(LoadLevel());
         }
     }
 
     public void TakeDamage(int Damage)
     {
         HealthPoints -= Damage;
-        Destroy(Sprite[HealthPoints].gameObject);
         if (HealthPoints < 1) {Dead = true;}
+    }
+
+    IEnumerator LoadLevel()
+    {
+        Transition.SetBool("Start", true);
+    
+        yield return new WaitForSeconds(1);
+
+        SceneManager.LoadScene(0);
+
+        if (SceneManager.GetActiveScene().buildIndex == 0)
+        {
+            SceneManager.LoadScene(1);
+        }
     }
 }

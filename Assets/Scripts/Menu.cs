@@ -5,7 +5,7 @@ public class Menu : MonoBehaviour
 {
     public GameObject PauseMenu;
     public AudioMixer AudioMixer;
-
+    
     void Update() 
     {
         if (Input.GetKeyDown(KeyCode.Escape)) 

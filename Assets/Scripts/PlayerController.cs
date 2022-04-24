@@ -9,9 +9,11 @@ public class PlayerController : MonoBehaviour
     public float Speed = 5;
     public bool Rolled;
     
+    public SpriteRenderer SR;
     public Rigidbody2D RB;
     public Animator Animator;
     public AudioSource AudioSource;
+    public AudioClip Hit;
 
     private void Awake() 
     {
@@ -25,6 +27,9 @@ public class PlayerController : MonoBehaviour
         Y = Input.GetAxis("Vertical");
         transform.position += new Vector3(X, 0, 0) * Speed * Time.deltaTime;
         Animator.SetFloat("IsWalking", Mathf.Abs(X));
+
+        if(X > 0){SR.flipX = false;}
+        if(X < 0){SR.flipX = true;}
     }
 
     void Update()
@@ -49,9 +54,14 @@ public class PlayerController : MonoBehaviour
                 Animator.SetBool("IsRolling", true);
                 AudioSource.PlayOneShot(AudioSource.clip);
             } 
-            if (Rolled == true) {Animator.SetBool("IsRolling", false);}
             if (Animator.GetBool("IsRolling") == true) {Physics2D.IgnoreLayerCollision(7, 6, true);}
             if (Animator.GetBool("IsRolling") == false) {Physics2D.IgnoreLayerCollision(7, 6, false);}
+            
+            if (Rolled == true)
+            {
+                Animator.SetBool("IsRolling", false); 
+                Animator.SetBool("IsTakingHit", false);
+            }
 
             //atirar
             if (Input.GetButtonDown("Fire1"))
@@ -68,12 +78,18 @@ public class PlayerController : MonoBehaviour
         {
             Health.Instance.TakeDamage(1);
             Animator.SetBool("IsTakingHit", true);
-        }
-        
-    }
+            AudioSource.PlayOneShot(Hit);
 
-    private void OnCollisionExit2D(Collision2D other) 
-    {
-        Animator.SetBool("IsTakingHit", false);
+            if (Health.Instance.Dead == true) {Animator.SetBool("IsDead", true);}
+
+            if (transform.position.x >= Col.gameObject.transform.position.x)
+            {
+                RB.AddForce(new Vector2(Speed, 0), ForceMode2D.Impulse);
+            }
+            if (transform.position.x < Col.gameObject.transform.position.x)
+            {
+                RB.AddForce(new Vector2(-Speed, 0), ForceMode2D.Impulse);
+            }
+        }
     }
 }

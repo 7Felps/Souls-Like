@@ -6,14 +6,33 @@ public class Bullet : MonoBehaviour
     
     private Vector2 Direction;
     private bool CanGetDirection;
+    private bool Right;
+    private bool Left;
 
     public Rigidbody2D RB;
+    public SpriteRenderer SR;
 
     private void Start()
     {
         Physics2D.IgnoreLayerCollision(3, 3, true);
+        
+        SR.enabled = true;
 
-        if (PlayerController.Instance.X >= 0)
+        if (PlayerController.Instance.X == 0)
+        {
+            if (PlayerController.Instance.SR.flipX == false)
+            {
+                transform.position = PlayerController.Instance.gameObject.transform.position + new Vector3(1,0,0);
+                Direction = Vector2.right;
+            }
+
+            if (PlayerController.Instance.SR.flipX == true)
+            {
+                transform.position = PlayerController.Instance.gameObject.transform.position + new Vector3(-1,0,0);
+                Direction = Vector2.left;
+            }
+        }
+        if (PlayerController.Instance.X > 0)
         {
             transform.position = PlayerController.Instance.gameObject.transform.position + new Vector3(1,0,0);
             Direction = Vector2.right;
@@ -51,6 +70,7 @@ public class Bullet : MonoBehaviour
         if (Col.gameObject.tag == "Respawn" || Col.gameObject.tag == "Enemy")
         {
             gameObject.SetActive(false);
+            SR.enabled = false;
             CanGetDirection = true;
         }
     }
