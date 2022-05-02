@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     public float Y;
     public float Speed = 5;
     public bool Rolled;
+    public bool SpecialUsed;
     
     public SpriteRenderer SR;
     public Rigidbody2D RB;
@@ -47,12 +48,13 @@ public class PlayerController : MonoBehaviour
             if (Mathf.Abs(RB.velocity.y) < 0.001f) {Animator.SetBool("IsJumping", false);}
 
             //rolamento
-            if (Input.GetButtonDown("Fire3") && Animator.GetBool("IsRolling") == false)
+            if (Input.GetButtonDown("Roll") && Animator.GetBool("IsRolling") == false && Health.Instance.StaminaPoints > 0)
             {
                 if (X > 0) {RB.AddForce(new Vector2(Speed, 0), ForceMode2D.Impulse);}
                 if (X < 0) {RB.AddForce(new Vector2(-Speed, 0), ForceMode2D.Impulse);}
                 Animator.SetBool("IsRolling", true);
                 AudioSource.PlayOneShot(AudioSource.clip);
+                Health.Instance.UseStamina(1.5f);
             } 
             if (Animator.GetBool("IsRolling") == true) {Physics2D.IgnoreLayerCollision(7, 6, true);}
             if (Animator.GetBool("IsRolling") == false) {Physics2D.IgnoreLayerCollision(7, 6, false);}
@@ -68,6 +70,27 @@ public class PlayerController : MonoBehaviour
             {
                 GameObject Bullet = ObjectPool.Instance.GetPooledObject();
                 if (Bullet != null) {Bullet.SetActive(true);}
+            }
+
+            //Usar ataque especial
+            if (Input.GetButtonDown("Fire2") && Health.Instance.SpecialPoints >= 1 
+                && Animator.GetBool("SpecialRight") == false && Animator.GetBool("SpecialLeft") == false)
+            {
+                if (SR.flipX == false)
+                {
+                    Animator.SetBool("SpecialRight", true);
+                    Health.Instance.UseSpecial(1);
+                }
+                if (SR.flipX == true)
+                {
+                    Animator.SetBool("SpecialLeft", true);
+                    Health.Instance.UseSpecial(1);
+                }
+            }
+            if (SpecialUsed == true) 
+            {
+                Animator.SetBool("SpecialRight", false); 
+                Animator.SetBool("SpecialLeft", false);
             }
         }
     }
