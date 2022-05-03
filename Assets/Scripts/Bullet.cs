@@ -67,14 +67,11 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D Col) 
     {
-
-        if (Col.gameObject.tag == "Enemy")
+        if (Col.gameObject.tag == "Respawn" || Col.gameObject.tag == "Enemy")
         {
-            Health.Instance.DoDamage(1);
-            Health.Instance.GetSpecialPoints(0.1f);
+            gameObject.SetActive(false);
+            SR.enabled = false;
+            CanGetDirection = true;
         }
-        gameObject.SetActive(false);
-        SR.enabled = false;
-        CanGetDirection = true;
     }
 }

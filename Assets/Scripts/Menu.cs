@@ -8,7 +8,7 @@ public class Menu : MonoBehaviour
     
     void Update() 
     {
-        if (Input.GetButtonDown("Start")) 
+        if (Input.GetKeyDown(KeyCode.Escape)) 
         {
             Time.timeScale = 0;
             PauseMenu.SetActive(true);

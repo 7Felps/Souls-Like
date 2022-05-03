@@ -7,17 +7,8 @@ public class Health : MonoBehaviour
 {
     public static Health Instance; 
     
-    public Slider HealthBar;
+    public Slider Slider;
     public float HealthPoints = 3;
-
-    public Slider StaminaBar;
-    public float StaminaPoints = 3;
-
-    public Slider SpecialBar;
-    public float SpecialPoints = 0;
-
-    public Slider EnemyHealthBar;
-    public float EnemyHP = 30;
 
     public bool Dead = false;
     public Animator Transition;
@@ -29,22 +20,12 @@ public class Health : MonoBehaviour
 
     private void Start() 
     {
-        HealthBar.maxValue = HealthPoints;
-        StaminaBar.maxValue = StaminaPoints;
-        EnemyHealthBar.maxValue = EnemyHP;
+        Slider.maxValue = HealthPoints;
     }
 
     void Update()
     {
-        HealthBar.value = HealthPoints;
-        StaminaBar.value = StaminaPoints;
-        SpecialBar.value = SpecialPoints;
-        EnemyHealthBar.value = EnemyHP;
-
-        if (StaminaBar.value < StaminaBar.maxValue)   
-        {
-            StaminaPoints += 0.001f;
-        }
+        Slider.value = HealthPoints;
 
         if (Dead == true)
         {
@@ -52,40 +33,10 @@ public class Health : MonoBehaviour
         }
     }
 
-    public void TakeDamage(float Damage)
+    public void TakeDamage(int Damage)
     {
         HealthPoints -= Damage;
-        if (HealthPoints <= 0) {Dead = true;}
-    }
-
-    public void UseStamina(float Stamina)
-    {
-        if (StaminaPoints >= 0)
-        {
-            StaminaPoints -= Stamina;
-        }
-    }
-
-    public void UseSpecial(float Points)
-    {
-        if (SpecialPoints >= 0)
-        {
-            SpecialPoints -= Points;
-        }
-    }
-
-    public void GetSpecialPoints(float Points)
-    {
-        if (SpecialPoints < SpecialBar.maxValue)
-        {
-            SpecialPoints += Points;
-        }
-    }
-
-    public void DoDamage(float Damage)
-    {
-        EnemyHP -= Damage;
-        if (EnemyHP <= 0) {Time.timeScale = 0;}
+        if (HealthPoints < 1) {Dead = true;}
     }
 
     IEnumerator LoadLevel()

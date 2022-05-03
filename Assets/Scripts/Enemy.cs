@@ -6,7 +6,6 @@ public class Enemy : MonoBehaviour
     public float Action;
     public Vector3 Target;
     public Rigidbody2D RB;
-    public Animator Animator;
 
     private void Start() 
     {
@@ -35,10 +34,8 @@ public class Enemy : MonoBehaviour
                 }
             }
         }
-
+        
         transform.position = Vector3.MoveTowards(transform.position, Target, Speed * Time.deltaTime);
-
-        //if (Health.Instance.EnemyHP <= 0) {Destroy(gameObject);}
     }
 
     private void OnCollisionEnter2D(Collision2D Col) 
@@ -53,11 +50,6 @@ public class Enemy : MonoBehaviour
             {
                 RB.AddForce(new Vector2(-Speed, 0), ForceMode2D.Impulse);
             }
-        }
-
-        if (Col.gameObject.tag == "Special")
-        {
-            Health.Instance.DoDamage(10);
         }
     }
 }
