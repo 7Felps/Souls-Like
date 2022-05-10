@@ -7,7 +7,7 @@ public class ObjectPool : MonoBehaviour
     public static ObjectPool Instance;
 
     private List<GameObject> PooledObjects = new List<GameObject>();
-    private int AmountToPool = 5;
+    private int AmountToPool = 3;
 
     public GameObject BulletPrefab;
 
