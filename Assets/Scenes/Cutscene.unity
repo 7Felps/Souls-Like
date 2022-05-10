@@ -123,6 +123,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &317180767 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8459531453587363467, guid: bdac5e064f1db854785cf93a7ba7f55f, type: 3}
+  m_PrefabInstance: {fileID: 1210369492}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &347379557
 GameObject:
   m_ObjectHideFlags: 0
@@ -586,6 +597,17 @@ SpriteRenderer:
 --- !u!114 &769630288 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1121471078071584433, guid: bdac5e064f1db854785cf93a7ba7f55f, type: 3}
+  m_PrefabInstance: {fileID: 1210369492}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &843336491 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4704336897008244861, guid: bdac5e064f1db854785cf93a7ba7f55f, type: 3}
   m_PrefabInstance: {fileID: 1210369492}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
@@ -1548,7 +1570,7 @@ GameObject:
   - component: {fileID: 1657589783}
   - component: {fileID: 1657589784}
   m_Layer: 0
-  m_Name: Wahuna
+  m_Name: Caronte
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1753,9 +1775,9 @@ MonoBehaviour:
   HealthPoints: 3
   StaminaBar: {fileID: 1186222587}
   StaminaPoints: 3
-  SpecialBar: {fileID: 0}
+  SpecialBar: {fileID: 843336491}
   SpecialPoints: 0
-  EnemyHealthBar: {fileID: 0}
+  EnemyHealthBar: {fileID: 317180767}
   EnemyHP: 3
   Dead: 0
   Transition: {fileID: 1333458623}

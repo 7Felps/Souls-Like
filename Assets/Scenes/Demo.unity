@@ -380,7 +380,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 511765657908808820, guid: bdac5e064f1db854785cf93a7ba7f55f, type: 3}
       propertyPath: EnemyHP
-      value: 50
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 511765657908808820, guid: bdac5e064f1db854785cf93a7ba7f55f, type: 3}
       propertyPath: HealthPoints
@@ -448,7 +448,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4704336897008244861, guid: bdac5e064f1db854785cf93a7ba7f55f, type: 3}
       propertyPath: m_Value
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4930777646922133446, guid: bdac5e064f1db854785cf93a7ba7f55f, type: 3}
       propertyPath: m_AnchorMax.x
@@ -1230,7 +1230,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1309055365}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 46ccef0d7e552784f995c4e132e50227, type: 3}
   m_Name: 

@@ -11,7 +11,7 @@ public class Enemy : MonoBehaviour
     private void Start() 
     {
         Target = new Vector3(Random.Range(-8, 8), -4.4f, 0);
-        Action = Random.Range(1, 2);
+        Action = Random.Range(0, 3);
     }
 
     void FixedUpdate()
@@ -38,7 +38,7 @@ public class Enemy : MonoBehaviour
 
         transform.position = Vector3.MoveTowards(transform.position, Target, Speed * Time.deltaTime);
 
-        //if (Health.Instance.EnemyHP <= 0) {Destroy(gameObject);}
+        if (Health.Instance.EnemyHP <= 0) {Destroy(gameObject);}
     }
 
     private void OnCollisionEnter2D(Collision2D Col) 

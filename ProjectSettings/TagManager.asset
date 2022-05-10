@@ -4,18 +4,10 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - Map
+  - Special
   - Enemy
-<<<<<<< HEAD
-<<<<<<< HEAD
   - Arrow
-=======
-  - Map
-  - Special
->>>>>>> 6e67ed6f46ac0a582f518fdc9fbfe18b8de8e9d1
-=======
-  - Map
-  - Special
->>>>>>> 6e67ed6f46ac0a582f518fdc9fbfe18b8de8e9d1
   layers:
   - Default
   - TransparentFX
@@ -23,8 +15,8 @@ TagManager:
   - Projectiles
   - Water
   - UI
-  - Enemy
   - Player
+  - Enemy
   - 
   - 
   - 

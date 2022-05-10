@@ -13,14 +13,15 @@ public class EnemyArcher : MonoBehaviour
     public float startTimeBtwShots;
 
     public bool delay = false;
+    public bool move = false;
 
     public GameObject arrow;
 
     void Start()
     {
         Target = new Vector3(Random.Range(-8, 8), -3.7f, 0);
-        Action = Random.Range(1, 2);
-        StartCoroutine(TiroRoutine());
+        Action = Random.Range(0, 3);
+        StartCoroutine(DelayRoutine());
     }
 
     // Update is called once per frame
@@ -39,33 +40,39 @@ public class EnemyArcher : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (Vector3.Distance(transform.position, Target) < 1)
+        if (move == true)
         {
-            Target = new Vector3(Random.Range(-8, 8), -3.7f, 0);
-            Action = Random.Range(0, 3);
-
-            if (Action == 0) { RB.AddForce(new Vector2(0, Speed), ForceMode2D.Impulse); }
-            if (Action == 1) { RB.AddForce(new Vector2(0, Speed * 2), ForceMode2D.Impulse); }
-            if (Action == 2)
+            if (Vector3.Distance(transform.position, Target) < 1)
             {
-                if (Target.x > transform.position.x)
+                Target = new Vector3(Random.Range(-8, 8), -3.7f, 0);
+                Action = Random.Range(0, 3);
+
+                if (Action == 0) { RB.AddForce(new Vector2(0, Speed), ForceMode2D.Impulse); }
+                if (Action == 1) { RB.AddForce(new Vector2(0, Speed * 2), ForceMode2D.Impulse); }
+                if (Action == 2)
                 {
-                    RB.AddForce(new Vector2(Speed, 0), ForceMode2D.Impulse);
-                }
-                if (Target.x < transform.position.x)
-                {
-                    RB.AddForce(new Vector2(-Speed, 0), ForceMode2D.Impulse);
+                    if (Target.x > transform.position.x)
+                    {
+                        RB.AddForce(new Vector2(Speed, 0), ForceMode2D.Impulse);
+                    }
+                    if (Target.x < transform.position.x)
+                    {
+                        RB.AddForce(new Vector2(-Speed, 0), ForceMode2D.Impulse);
+                    }
                 }
             }
-        }
 
-        transform.position = Vector3.MoveTowards(transform.position, Target, Speed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, Target, Speed * Time.deltaTime);
+
+            if (Health.Instance.EnemyHP <= 0) {Destroy(gameObject);}
+        }
     }
 
-    IEnumerator TiroRoutine()
+    IEnumerator DelayRoutine()
     {
-        yield return new WaitForSeconds(3.0f);
+        yield return new WaitForSeconds(3f);
         delay = true;
+        move = true;
     }
 
     private void OnCollisionEnter2D(Collision2D Col)

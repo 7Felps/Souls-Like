@@ -54,7 +54,7 @@ public class PlayerController : MonoBehaviour
                 if (X < 0) {RB.AddForce(new Vector2(-Speed, 0), ForceMode2D.Impulse);}
                 Animator.SetBool("IsRolling", true);
                 AudioSource.PlayOneShot(AudioSource.clip);
-                Health.Instance.UseStamina(1.5f);
+                Health.Instance.UseStamina(1);
             } 
             if (Animator.GetBool("IsRolling") == true) {Physics2D.IgnoreLayerCollision(7, 6, true);}
             if (Animator.GetBool("IsRolling") == false) {Physics2D.IgnoreLayerCollision(7, 6, false);}
@@ -97,32 +97,14 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D Col) 
     {
-        if (Col.gameObject.tag == "Enemy")
-        {
-            Health.Instance.TakeDamage(1);
-            Animator.SetBool("IsTakingHit", true);
-            AudioSource.PlayOneShot(Hit);
-
-            if (Health.Instance.Dead == true) {Animator.SetBool("IsDead", true);}
-
-            if (transform.position.x >= Col.gameObject.transform.position.x)
-            {
-                RB.AddForce(new Vector2(Speed, 0), ForceMode2D.Impulse);
-            }
-            if (transform.position.x < Col.gameObject.transform.position.x)
-            {
-                RB.AddForce(new Vector2(-Speed, 0), ForceMode2D.Impulse);
-            }
-        }
-
-        if (Col.gameObject.tag == "Arrow")
+        if (Col.gameObject.tag == "Enemy" || Col.gameObject.tag == "Arrow")
         {
             Debug.Log("Hit");
             Health.Instance.TakeDamage(1);
             Animator.SetBool("IsTakingHit", true);
             AudioSource.PlayOneShot(Hit);
 
-            if (Health.Instance.Dead == true) { Animator.SetBool("IsDead", true); }
+            if (Health.Instance.Dead == true) {Animator.SetBool("IsDead", true);}
 
             if (transform.position.x >= Col.gameObject.transform.position.x)
             {
