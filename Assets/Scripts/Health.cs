@@ -41,7 +41,7 @@ public class Health : MonoBehaviour
         SpecialBar.value = SpecialPoints;
         EnemyHealthBar.value = EnemyHP;
 
-        if (StaminaBar.value < StaminaBar.maxValue)   
+        if (StaminaBar.value < StaminaBar.maxValue && PlayerController.Instance.Pause == false)   
         {
             StaminaPoints += 0.001f;
         }
@@ -55,7 +55,10 @@ public class Health : MonoBehaviour
     public void TakeDamage(float Damage)
     {
         HealthPoints -= Damage;
-        if (HealthPoints <= 0) {Dead = true;}
+        if (HealthPoints <= 0) 
+        {
+            Dead = true;
+        }
     }
 
     public void UseStamina(float Stamina)
@@ -85,7 +88,10 @@ public class Health : MonoBehaviour
     public void DoDamage(float Damage)
     {
         EnemyHP -= Damage;
-        if (EnemyHP <= 0) {Time.timeScale = 0;}
+        if (EnemyHP <= 0) 
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
     }
 
     IEnumerator LoadLevel()

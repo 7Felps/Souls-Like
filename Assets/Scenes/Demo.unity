@@ -387,6 +387,10 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 511765657908808820, guid: bdac5e064f1db854785cf93a7ba7f55f, type: 3}
+      propertyPath: SpecialPoints
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 511765657908808820, guid: bdac5e064f1db854785cf93a7ba7f55f, type: 3}
       propertyPath: StaminaPoints
       value: 3
       objectReference: {fileID: 0}
@@ -855,6 +859,7 @@ MonoBehaviour:
   X: 0
   Y: 0
   Speed: 5
+  Pause: 0
   Rolled: 0
   SpecialUsed: 0
   SR: {fileID: 1250137892}
@@ -996,7 +1001,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!61 &1250137891
 BoxCollider2D:

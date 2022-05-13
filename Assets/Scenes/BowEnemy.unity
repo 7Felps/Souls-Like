@@ -511,7 +511,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 511765657908808820, guid: bdac5e064f1db854785cf93a7ba7f55f, type: 3}
       propertyPath: EnemyHP
-      value: 30
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 511765657908808820, guid: bdac5e064f1db854785cf93a7ba7f55f, type: 3}
       propertyPath: HealthPoints
@@ -835,6 +835,7 @@ MonoBehaviour:
   X: 0
   Y: 0
   Speed: 5
+  Pause: 0
   Rolled: 0
   SpecialUsed: 0
   SR: {fileID: 1271472040}
@@ -1083,7 +1084,7 @@ GameObject:
   - component: {fileID: 1423156918}
   - component: {fileID: 1423156917}
   - component: {fileID: 1423156914}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: EnemyArcher
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -1151,7 +1152,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -9095717837082945937, guid: bd3cb4af8406d4436a2ae8c2aafe1f8d, type: 3}
-  m_Color: {r: 0.3786935, g: 0.4339623, b: 0.42161354, a: 1}
+  m_Color: {r: 0.7019608, g: 0.7019608, b: 0.7019608, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1169,7 +1170,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1423156913}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.31, y: -2.48, z: 0}
+  m_LocalPosition: {x: 7, y: 5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1190,7 +1191,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0.3
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1

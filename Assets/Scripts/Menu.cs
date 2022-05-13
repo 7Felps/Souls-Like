@@ -12,6 +12,7 @@ public class Menu : MonoBehaviour
         {
             Time.timeScale = 0;
             PauseMenu.SetActive(true);
+            PlayerController.Instance.Pause = true;
         }
     }
 
@@ -19,6 +20,7 @@ public class Menu : MonoBehaviour
     {
         Time.timeScale = 1;
         PauseMenu.SetActive(false);
+        PlayerController.Instance.Pause = false;
     }
 
     public void SetVolume(float volume) 

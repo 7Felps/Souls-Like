@@ -42,24 +42,14 @@ public class EnemyArcher : MonoBehaviour
     {
         if (move == true)
         {
-            if (Vector3.Distance(transform.position, Target) < 1)
+            if (Vector3.Distance(transform.position, Target) < 3)
             {
                 Target = new Vector3(Random.Range(-8, 8), -3.7f, 0);
                 Action = Random.Range(0, 3);
 
-                if (Action == 0) { RB.AddForce(new Vector2(0, Speed), ForceMode2D.Impulse); }
-                if (Action == 1) { RB.AddForce(new Vector2(0, Speed * 2), ForceMode2D.Impulse); }
-                if (Action == 2)
-                {
-                    if (Target.x > transform.position.x)
-                    {
-                        RB.AddForce(new Vector2(Speed, 0), ForceMode2D.Impulse);
-                    }
-                    if (Target.x < transform.position.x)
-                    {
-                        RB.AddForce(new Vector2(-Speed, 0), ForceMode2D.Impulse);
-                    }
-                }
+                if (Action == 0) {RB.AddForce(new Vector2(0, Speed), ForceMode2D.Impulse);}
+                if (Action == 1) {RB.AddForce(new Vector2(0, Speed * 2), ForceMode2D.Impulse);}
+                if (Action == 2) {RB.AddForce(new Vector2(0, -Speed), ForceMode2D.Impulse);}
             }
 
             transform.position = Vector3.MoveTowards(transform.position, Target, Speed * Time.deltaTime);
