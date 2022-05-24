@@ -141,4 +141,13 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D Col) 
+    {
+        if (Col.gameObject.name == "River")
+        {
+            transform.position = new Vector3(0, -4.4f, 0);
+            AudioSource.PlayOneShot(Hit);
+        }
+    }
 }
