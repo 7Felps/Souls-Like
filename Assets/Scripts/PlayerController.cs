@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class PlayerController : MonoBehaviour
     public Animator Animator;
     public AudioSource AudioSource;
     public AudioClip Hit;
+    public Transform Boat;
 
     private void Awake() 
     {
@@ -146,8 +148,12 @@ public class PlayerController : MonoBehaviour
     {
         if (Col.gameObject.name == "River")
         {
-            transform.position = new Vector3(0, -4.4f, 0);
+            transform.position = Boat.position;
             AudioSource.PlayOneShot(Hit);
+        }
+        if (Col.gameObject.name == "Boss")
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }
 }

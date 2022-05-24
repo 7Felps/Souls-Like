@@ -867,6 +867,7 @@ MonoBehaviour:
   Animator: {fileID: 1250137889}
   AudioSource: {fileID: 1250137888}
   Hit: {fileID: 8300000, guid: 2940a602bc404f942ac92bc66e0aee61, type: 3}
+  Boat: {fileID: 0}
 --- !u!82 &1250137888
 AudioSource:
   m_ObjectHideFlags: 0
