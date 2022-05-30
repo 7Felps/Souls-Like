@@ -7,15 +7,22 @@ public class CameraFollow : MonoBehaviour
     public Transform Player;
 
     public SpriteRenderer Crystal;
-    public SpriteRenderer Crystal2;
     public Color Color1;
     public Color Color2;
 
-    public bool Wait = false;
+    private void Start() 
+    { 
+        if (SceneManager.GetActiveScene().name == "Hub2" || SceneManager.GetActiveScene().name == "Hub3" 
+            || SceneManager.GetActiveScene().name == "Travelling")
+        {
+            PlayerController.Instance.Pause = true;
+            StartCoroutine(MoveCamera());
+        }
+    }
 
     void Update()
     {
-        if (Player.position.x > -10 && Player.position.x < 120 && Wait == true)
+        if (Player.position.x > -10 && Player.position.x < 120 && PlayerController.Instance.Pause == false)
         {
             transform.position = new Vector3(Player.position.x, 0, -10);
         }
@@ -26,22 +33,12 @@ public class CameraFollow : MonoBehaviour
         }
         else{Camera.main.orthographicSize = 5;}
 
-        if (SceneManager.GetActiveScene().name == "Hub2")
-        {
-            Crystal.color = Color.Lerp(Color1, Color2, Mathf.PingPong(Time.time, 3f) / 3f);
-            StartCoroutine(MoveCamera());
-        }
-        if (SceneManager.GetActiveScene().name == "Hub3")
-        {
-            Crystal2.color = Color.Lerp(Color1, Color2, Mathf.PingPong(Time.time, 3f) / 3f);
-            StartCoroutine(MoveCamera());
-        }
+        Crystal.color = Color.Lerp(Color1, Color2, 0.3f * Time.time);
     }
 
     IEnumerator MoveCamera()
     {
-
-        yield return new WaitForSeconds(3);
-        Wait = true;
+        yield return new WaitForSeconds(4);
+        PlayerController.Instance.Pause = false;
     }
 }

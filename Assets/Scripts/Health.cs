@@ -48,6 +48,10 @@ public class Health : MonoBehaviour
 
         if (Dead == true)
         {
+            if (SceneManager.GetActiveScene().buildIndex != 0)
+            {
+                PlayerPrefs.SetInt("SavedScene", SceneManager.GetActiveScene().buildIndex);
+            }
             StartCoroutine(LoadLevel());
         }
     }
@@ -104,7 +108,12 @@ public class Health : MonoBehaviour
 
         if (SceneManager.GetActiveScene().buildIndex == 0)
         {
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(PlayerPrefs.GetInt("SavedScene"));
+        }
+
+        if (SceneManager.GetActiveScene().name == "Travelling")
+        {
+            SceneManager.LoadScene("FinalBoss");
         }
     }
 }
