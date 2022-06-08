@@ -11,7 +11,7 @@ public class Bullet : MonoBehaviour
 
     public Rigidbody2D RB;
     public SpriteRenderer SR;
-
+    
     private void Start()
     {
         Physics2D.IgnoreLayerCollision(3, 3, true);
@@ -73,6 +73,7 @@ public class Bullet : MonoBehaviour
             Health.Instance.DoDamage(1);
             Health.Instance.GetSpecialPoints(0.1f);
         }
+
         gameObject.SetActive(false);
         SR.enabled = false;
         CanGetDirection = true;

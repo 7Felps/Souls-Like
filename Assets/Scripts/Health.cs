@@ -20,6 +20,7 @@ public class Health : MonoBehaviour
     public float EnemyHP = 30;
 
     public bool Dead = false;
+    
     public Animator Transition;
     
     private void Awake() 

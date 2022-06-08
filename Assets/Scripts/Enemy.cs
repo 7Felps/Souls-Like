@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class Enemy : MonoBehaviour
 {
@@ -7,11 +8,14 @@ public class Enemy : MonoBehaviour
     public Vector3 Target;
     public Rigidbody2D RB;
     public Animator Animator;
+    public bool AnimationEnded;
+    public bool Delay = false;
 
     private void Start() 
     {
         Target = new Vector3(Random.Range(-8, 8), -4.4f, 0);
         Action = Random.Range(0, 3);
+        StartCoroutine(DelayRoutine());
     }
 
     void FixedUpdate()
@@ -19,7 +23,7 @@ public class Enemy : MonoBehaviour
         if (Vector3.Distance(transform.position, Target) < 1)
         {
             Target = new Vector3(Random.Range(-8, 8), -4.4f, 0);
-            Action = Random.Range(0, 3);
+            Action = Random.Range(0, 4);
             
             if (Action == 0) {RB.AddForce(new Vector2(0, Speed), ForceMode2D.Impulse);}
             if (Action == 1) {RB.AddForce(new Vector2(0, Speed * 2), ForceMode2D.Impulse);}
@@ -34,9 +38,21 @@ public class Enemy : MonoBehaviour
                     RB.AddForce(new Vector2(-Speed, 0), ForceMode2D.Impulse);
                 }
             }
+            if (Action == 3)
+            {
+                Animator.SetBool("IsAttacking", true);
+            }
         }
 
-        transform.position = Vector3.MoveTowards(transform.position, Target, Speed * Time.deltaTime);
+        if (AnimationEnded == true)
+        {
+            Animator.SetBool("IsAttacking", false);
+        }
+
+        if (Delay == true)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, Target, Speed * Time.deltaTime);
+        }
 
         if (Health.Instance.EnemyHP <= 0) {Destroy(gameObject);}
     }
@@ -59,5 +75,11 @@ public class Enemy : MonoBehaviour
         {
             Health.Instance.DoDamage(10);
         }
+    }
+
+    IEnumerator DelayRoutine()
+    {
+        yield return new WaitForSeconds(2f);
+        Delay = true;
     }
 }

@@ -49,7 +49,6 @@ public class EnemyArcher : MonoBehaviour
 
                 if (Action == 0) {RB.AddForce(new Vector2(0, Speed), ForceMode2D.Impulse);}
                 if (Action == 1) {RB.AddForce(new Vector2(0, Speed * 2), ForceMode2D.Impulse);}
-                if (Action == 2) {RB.AddForce(new Vector2(0, -Speed), ForceMode2D.Impulse);}
             }
 
             transform.position = Vector3.MoveTowards(transform.position, Target, Speed * Time.deltaTime);
@@ -60,7 +59,7 @@ public class EnemyArcher : MonoBehaviour
 
     IEnumerator DelayRoutine()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2.5f);
         delay = true;
         move = true;
     }

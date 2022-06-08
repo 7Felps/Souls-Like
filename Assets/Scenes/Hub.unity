@@ -1198,6 +1198,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 511765657908808820, guid: bdac5e064f1db854785cf93a7ba7f55f, type: 3}
+      propertyPath: Dead
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 511765657908808820, guid: bdac5e064f1db854785cf93a7ba7f55f, type: 3}
       propertyPath: EnemyHP
       value: 30
       objectReference: {fileID: 0}
