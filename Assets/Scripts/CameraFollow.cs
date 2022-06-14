@@ -20,7 +20,7 @@ public class CameraFollow : MonoBehaviour
         }
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (Player.position.x > -10 && Player.position.x < 120 && PlayerController.Instance.Pause == false)
         {
@@ -33,7 +33,7 @@ public class CameraFollow : MonoBehaviour
         }
         else{Camera.main.orthographicSize = 5;}
 
-        Crystal.color = Color.Lerp(Color1, Color2, 0.3f * Time.time);
+        Crystal.color = Color.Lerp(Color1, Color2, 0.15f * Time.time);
     }
 
     IEnumerator MoveCamera()

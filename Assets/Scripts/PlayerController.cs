@@ -121,7 +121,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D Col) 
     {
-        if (Col.gameObject.tag == "Enemy" || Col.gameObject.tag == "Arrow")
+        if (Col.gameObject.tag == "Enemy" || Col.gameObject.tag == "Arrow" || Col.gameObject.tag == "Spell")
         {
             Health.Instance.TakeDamage(1);
             Animator.SetBool("IsTakingHit", true);
