@@ -44,7 +44,7 @@ public class Health : MonoBehaviour
 
         if (StaminaBar.value < StaminaBar.maxValue && PlayerController.Instance.Pause == false)   
         {
-            StaminaPoints += 0.001f;
+            StaminaPoints += 0.008f;
         }
 
         if (Dead == true)

@@ -8,9 +8,14 @@ public class Spell : MonoBehaviour
 
     private Transform player;
 
+    private Transform Enemy;
+
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
+
+        Enemy = GameObject.FindGameObjectWithTag("Enemy").transform;
+        Physics2D.IgnoreCollision(this.GetComponent<Collider2D>(), Enemy.GetComponent<Collider2D>());
     }
 
     // Update is called once per frame

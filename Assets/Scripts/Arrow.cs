@@ -8,6 +8,8 @@ public class Arrow : MonoBehaviour
 
     private Transform player;
 
+    private Transform Enemy;
+
     private Vector2 target;
 
     void Start()
@@ -15,6 +17,9 @@ public class Arrow : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").transform;
 
         target = new Vector2(player.position.x, player.position.y);
+
+        Enemy = GameObject.FindGameObjectWithTag("Enemy").transform;
+        Physics2D.IgnoreCollision(this.GetComponent<Collider2D>(), Enemy.GetComponent<Collider2D>());
     }
 
     // Update is called once per frame

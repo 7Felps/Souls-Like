@@ -68,7 +68,7 @@ public class EnemySorcerer : MonoBehaviour
 
     IEnumerator DelayRoutine()
     {
-        yield return new WaitForSeconds(3.0f);
+        yield return new WaitForSeconds(2f);
         delay = true;
         move = true;
     }
@@ -85,6 +85,11 @@ public class EnemySorcerer : MonoBehaviour
             {
                 RB.AddForce(new Vector2(-Speed, 0), ForceMode2D.Impulse);
             }
+        }
+
+        if (Col.gameObject.tag == "Special")
+        {
+            Health.Instance.DoDamage(10);
         }
     }
 }

@@ -59,7 +59,7 @@ public class EnemyArcher : MonoBehaviour
 
     IEnumerator DelayRoutine()
     {
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(2f);
         delay = true;
         move = true;
     }
@@ -76,6 +76,11 @@ public class EnemyArcher : MonoBehaviour
             {
                 RB.AddForce(new Vector2(-Speed, 0), ForceMode2D.Impulse);
             }
+        }
+
+        if (Col.gameObject.tag == "Special")
+        {
+            Health.Instance.DoDamage(10);
         }
     }
 }
